@@ -22,6 +22,10 @@ class SearchViewController: UIViewController {
 	var hasSearched = false
 	var isLoading = false
 	
+	// Keeps track of the last search task
+	// so that it can be cancelled
+	var dataTask: URLSessionDataTask?
+	
 	override func viewDidLoad()
 	{
 		super.viewDidLoad()
@@ -233,6 +237,7 @@ extension SearchViewController: UISearchBarDelegate
 		if !searchBar.text!.isEmpty
 		{
 			searchBar.resignFirstResponder()
+			dataTask?.cancel()
 			isLoading = true
 			tableView.reloadData()
 			hasSearched = true
@@ -242,13 +247,14 @@ extension SearchViewController: UISearchBarDelegate
 			// 2
 			let session = URLSession.shared
 			// 3
-			let dataTask = session.dataTask(with: url, completionHandler:
+			dataTask = session.dataTask(with: url, completionHandler:
 				{ data, response, error in
 					// 4
 					// print("On main thread? " + (Thread.current.isMainThread ? "Yes" : "No"))
-					if let error = error
+					if let error = error as? NSError, error.code == -999
 					{
-						print("Failure! \(error)")
+						// search was cancelled
+						return
 					}
 					else if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200
 					{
@@ -276,7 +282,7 @@ extension SearchViewController: UISearchBarDelegate
 				} // end completion handler
 			)
 			// 5
-			dataTask.resume()
+			dataTask?.resume()
 		}
 	}
 } // end extension
