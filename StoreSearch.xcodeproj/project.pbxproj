@@ -16,6 +16,7 @@
 		EF3ADA0B1DDE437A00868CAE /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3ADA0A1DDE437A00868CAE /* SearchResultCell.swift */; };
 		EF3ADA0D1DDE49A600868CAE /* NothingFoundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF3ADA0C1DDE49A600868CAE /* NothingFoundCell.xib */; };
 		EF3ADA0F1DDE8E4400868CAE /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF3ADA0E1DDE8E4400868CAE /* LoadingCell.xib */; };
+		EF3ADA111DDF734400868CAE /* UIImageView+DownloadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3ADA101DDF734400868CAE /* UIImageView+DownloadImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		EF3ADA0A1DDE437A00868CAE /* SearchResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
 		EF3ADA0C1DDE49A600868CAE /* NothingFoundCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NothingFoundCell.xib; sourceTree = "<group>"; };
 		EF3ADA0E1DDE8E4400868CAE /* LoadingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = "<group>"; };
+		EF3ADA101DDF734400868CAE /* UIImageView+DownloadImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+DownloadImage.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 				EF3ADA0A1DDE437A00868CAE /* SearchResultCell.swift */,
 				EF3ADA081DDE3D0B00868CAE /* SearchResultCell.xib */,
 				EF3AD9F61DDD18DB00868CAE /* SearchViewController.swift */,
+				EF3ADA101DDF734400868CAE /* UIImageView+DownloadImage.swift */,
 			);
 			path = StoreSearch;
 			sourceTree = "<group>";
@@ -155,6 +158,7 @@
 				EF3ADA071DDD3EA300868CAE /* SearchResult.swift in Sources */,
 				EF3ADA0B1DDE437A00868CAE /* SearchResultCell.swift in Sources */,
 				EF3AD9F51DDD18DB00868CAE /* AppDelegate.swift in Sources */,
+				EF3ADA111DDF734400868CAE /* UIImageView+DownloadImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
