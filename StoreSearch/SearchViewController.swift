@@ -54,24 +54,15 @@ class SearchViewController: UIViewController {
 		let url = URL(string: urlString)
 		return url!
 	}
-
-	func performStoreRequest(with url: URL) -> String?
-	{
-		do {
-			return try String(contentsOf: url, encoding: .utf8)
-		} catch {
-			print("Download Error: \(error)")
-			return nil
-		}
-	}
 	
-	func parse(json: String) -> [String: Any]?
+	func parse(json data: Data) -> [String: Any]?
 	{
-		guard let data = json.data(using: .utf8, allowLossyConversion: false) else { return nil }
-		
-		do {
+		do
+		{
 			return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-		} catch {
+		}
+		catch
+		{
 			print("JSON Error: \(error)")
 			return nil
 		}
@@ -247,32 +238,48 @@ extension SearchViewController: UISearchBarDelegate
 			hasSearched = true
 			searchResults = []
 			// 1
-			let queue = DispatchQueue.global()
+			let url = iTunesURL(searchText: searchBar.text!)
 			// 2
-			queue.async
-				{
-					let url = self.iTunesURL(searchText: searchBar.text!)
-					if let jsonString = self.performStoreRequest(with: url),
-						let jsonDictionary = self.parse(json: jsonString)
+			let session = URLSession.shared
+			// 3
+			let dataTask = session.dataTask(with: url, completionHandler:
+				{ data, response, error in
+					// 4
+					// print("On main thread? " + (Thread.current.isMainThread ? "Yes" : "No"))
+					if let error = error
 					{
-						self.searchResults = self.parse(dictionary: jsonDictionary)
-						self.searchResults.sort(by: <)
-						// 3
-						DispatchQueue.main.async
-							{
-								self.isLoading = false
-								self.tableView.reloadData()
-							}
-						return
+						print("Failure! \(error)")
 					}
-					DispatchQueue.main.async
+					else if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200
+					{
+						if let data = data, let jsonDictionary = self.parse(json: data)
 						{
+							self.searchResults = self.parse(dictionary: jsonDictionary)
+							self.searchResults.sort(by: <)
+							DispatchQueue.main.async
+								{
+									self.isLoading = false
+									self.tableView.reloadData()
+								}
+							return
+						}
+					}
+					else
+					{
+						DispatchQueue.main.async {
+							self.hasSearched = false
+							self.isLoading = false
+							self.tableView.reloadData()
 							self.showNetworkError()
 						}
-				}
+					}
+				} // end completion handler
+			)
+			// 5
+			dataTask.resume()
 		}
 	}
-}
+} // end extension
 
 extension SearchViewController: UITableViewDataSource
 {
@@ -360,7 +367,7 @@ extension SearchViewController: UITableViewDataSource
 			default: return kind
 		}
 	}
-}
+} // end extension
 
 extension SearchViewController: UITableViewDelegate
 {
@@ -377,5 +384,5 @@ extension SearchViewController: UITableViewDelegate
 			return indexPath
 		}
 	}
-}
+} // end extension
 
