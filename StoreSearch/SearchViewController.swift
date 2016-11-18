@@ -13,12 +13,14 @@ class SearchViewController: UIViewController {
 	{
 		static let searchResultCell = "SearchResultCell"
 		static let nothingFoundCell = "NothingFoundCell"
+		static let loadingCell = "LoadingCell"
 	}
 	@IBOutlet weak var searchBar: UISearchBar!
 	@IBOutlet weak var tableView: UITableView!
 	
 	var searchResults: [SearchResult] = []
 	var hasSearched = false
+	var isLoading = false
 	
 	override func viewDidLoad()
 	{
@@ -35,6 +37,10 @@ class SearchViewController: UIViewController {
 		// Register "not found" cell.
 		cellNib = UINib(nibName: TableViewCellIdentifiers.nothingFoundCell, bundle: nil)
 		tableView.register(cellNib, forCellReuseIdentifier: TableViewCellIdentifiers.nothingFoundCell)
+		
+		// Register "Loading..." cell.
+		cellNib = UINib(nibName: TableViewCellIdentifiers.loadingCell, bundle: nil)
+		tableView.register(cellNib, forCellReuseIdentifier: TableViewCellIdentifiers.loadingCell)
 	}
 
 	override func didReceiveMemoryWarning() {
@@ -236,25 +242,34 @@ extension SearchViewController: UISearchBarDelegate
 		if !searchBar.text!.isEmpty
 		{
 			searchBar.resignFirstResponder()
+			isLoading = true
+			tableView.reloadData()
 			hasSearched = true
 			searchResults = []
-			let url = iTunesURL(searchText: searchBar.text!)
-			print("URL: '\(url)'")
-			
-			// Hit iTunes' web service
-			if let jsonString = performStoreRequest(with: url)
-			{
-				if let jsonDictionary = parse(json: jsonString) {
-					print("Dictionary \(jsonDictionary)")
-					searchResults = parse(dictionary: jsonDictionary)
-					searchResults.sort { $0 < $1 }
-					// Above could also be
-					// searchResults.sort(by: <)
-					tableView.reloadData()
-					return
+			// 1
+			let queue = DispatchQueue.global()
+			// 2
+			queue.async
+				{
+					let url = self.iTunesURL(searchText: searchBar.text!)
+					if let jsonString = self.performStoreRequest(with: url),
+						let jsonDictionary = self.parse(json: jsonString)
+					{
+						self.searchResults = self.parse(dictionary: jsonDictionary)
+						self.searchResults.sort(by: <)
+						// 3
+						DispatchQueue.main.async
+							{
+								self.isLoading = false
+								self.tableView.reloadData()
+							}
+						return
+					}
+					DispatchQueue.main.async
+						{
+							self.showNetworkError()
+						}
 				}
-			}
-			showNetworkError()
 		}
 	}
 }
@@ -263,7 +278,11 @@ extension SearchViewController: UITableViewDataSource
 {
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
 	{
-		if !hasSearched
+		if isLoading
+		{
+			return 1
+		}
+		else if !hasSearched
 		{
 			return 0
 		}
@@ -279,7 +298,18 @@ extension SearchViewController: UITableViewDataSource
 
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
 	{
-		if searchResults.count == 0
+		if isLoading
+		{
+			let cell = tableView.dequeueReusableCell(
+				withIdentifier: TableViewCellIdentifiers.loadingCell,
+				for: indexPath
+			)
+			
+			let spinner = cell.viewWithTag(100) as! UIActivityIndicatorView
+			spinner.startAnimating()
+			return cell
+		}
+		else if searchResults.count == 0
 		{
 			return tableView.dequeueReusableCell(
 				withIdentifier: TableViewCellIdentifiers.nothingFoundCell,
@@ -341,7 +371,7 @@ extension SearchViewController: UITableViewDelegate
 	
 	func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath?
 	{
-		if searchResults.count == 0 {
+		if searchResults.count == 0 || isLoading {
 			return nil
 		} else {
 			return indexPath
