@@ -21,6 +21,8 @@
 		EF89424D1DDF85AE005985AA /* DimmingPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF89424C1DDF85AE005985AA /* DimmingPresentationController.swift */; };
 		EF89424F1DDFD1F9005985AA /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF89424E1DDFD1F9005985AA /* GradientView.swift */; };
 		EF8942511DDFD467005985AA /* BounceAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8942501DDFD467005985AA /* BounceAnimationController.swift */; };
+		EF8942551DDFDAE8005985AA /* LandscapeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8942541DDFDAE8005985AA /* LandscapeViewController.swift */; };
+		EF8942571DE0E6EF005985AA /* FadeOutAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8942561DE0E6EF005985AA /* FadeOutAnimationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		EF89424C1DDF85AE005985AA /* DimmingPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DimmingPresentationController.swift; sourceTree = "<group>"; };
 		EF89424E1DDFD1F9005985AA /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		EF8942501DDFD467005985AA /* BounceAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BounceAnimationController.swift; sourceTree = "<group>"; };
+		EF8942541DDFDAE8005985AA /* LandscapeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandscapeViewController.swift; sourceTree = "<group>"; };
+		EF8942561DE0E6EF005985AA /* FadeOutAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FadeOutAnimationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,8 +81,10 @@
 				EF8942501DDFD467005985AA /* BounceAnimationController.swift */,
 				EF89424A1DDF80AC005985AA /* DetailViewController.swift */,
 				EF89424C1DDF85AE005985AA /* DimmingPresentationController.swift */,
+				EF8942561DE0E6EF005985AA /* FadeOutAnimationController.swift */,
 				EF89424E1DDFD1F9005985AA /* GradientView.swift */,
 				EF3ADA001DDD18DB00868CAE /* Info.plist */,
+				EF8942541DDFDAE8005985AA /* LandscapeViewController.swift */,
 				EF3ADA0E1DDE8E4400868CAE /* LoadingCell.xib */,
 				EF3AD9F81DDD18DB00868CAE /* Main.storyboard */,
 				EF3ADA0C1DDE49A600868CAE /* NothingFoundCell.xib */,
@@ -168,8 +174,10 @@
 			files = (
 				EF3AD9F71DDD18DB00868CAE /* SearchViewController.swift in Sources */,
 				EF89424D1DDF85AE005985AA /* DimmingPresentationController.swift in Sources */,
+				EF8942551DDFDAE8005985AA /* LandscapeViewController.swift in Sources */,
 				EF3ADA071DDD3EA300868CAE /* SearchResult.swift in Sources */,
 				EF3ADA0B1DDE437A00868CAE /* SearchResultCell.swift in Sources */,
+				EF8942571DE0E6EF005985AA /* FadeOutAnimationController.swift in Sources */,
 				EF8942511DDFD467005985AA /* BounceAnimationController.swift in Sources */,
 				EF89424B1DDF80AC005985AA /* DetailViewController.swift in Sources */,
 				EF3AD9F51DDD18DB00868CAE /* AppDelegate.swift in Sources */,

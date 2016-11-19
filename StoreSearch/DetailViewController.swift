@@ -18,11 +18,19 @@ class DetailViewController: UIViewController
 	@IBOutlet weak var genreLabel: UILabel!
 	@IBOutlet weak var priceButton: UIButton!
 	
+	enum AnimationStyle
+	{
+		case slide
+		case fade
+	}
+	
+	var dismissAnimationStyle = AnimationStyle.fade
 	var searchResult: SearchResult!
 	var downloadTask: URLSessionDownloadTask?
 	
 	@IBAction func close()
 	{
+		dismissAnimationStyle = .slide
 		dismiss(animated: true, completion: nil)
 	}
 
@@ -120,6 +128,17 @@ class DetailViewController: UIViewController
 	{
 		return BounceAnimationController()
 	}
+	
+//	func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning?
+//	{
+//		switch dismissAnimationStyle
+//		{
+//			case .slide:
+//				return SlideOutAnimationController()
+//			case .fade:
+//				return FadeOutAnimationController()
+//		}
+//	}
 
 }
 

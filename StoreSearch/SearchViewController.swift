@@ -22,6 +22,7 @@ class SearchViewController: UIViewController {
 	var searchResults: [SearchResult] = []
 	var hasSearched = false
 	var isLoading = false
+	var landscapeViewController: LandscapeViewController?
 	
 	// Keeps track of the last search task
 	// so that it can be cancelled
@@ -255,6 +256,72 @@ class SearchViewController: UIViewController {
 		}
 	}
 	
+	override func willTransition(
+		to newCollection: UITraitCollection,
+		with coordinator: UIViewControllerTransitionCoordinator)
+	{
+		super.willTransition(to: newCollection, with: coordinator)
+		
+		switch newCollection.verticalSizeClass
+		{
+			case .compact:
+				showLandscape(with: coordinator)
+			case .regular, .unspecified:
+				hideLandscape(with: coordinator)
+		}
+	}
+	
+	func hideLandscape(with coordinator: UIViewControllerTransitionCoordinator)
+	{
+		if let controller = landscapeViewController
+		{
+			controller.willMove(toParentViewController: nil)
+			coordinator.animate(
+				alongsideTransition:
+				{
+					_ in
+					controller.view.alpha = 0
+					//self.searchBar.resignFirstResponder()
+				},
+				completion:
+				{ _ in
+					controller.view.removeFromSuperview()
+					controller.removeFromParentViewController()
+					self.landscapeViewController = nil
+				}
+			)
+		}
+	}
+	
+	func showLandscape(
+		with coordinator: UIViewControllerTransitionCoordinator)
+	{
+		guard landscapeViewController == nil else { return }
+		landscapeViewController = storyboard!.instantiateViewController(
+			withIdentifier: "LandscapeViewController") as? LandscapeViewController
+		if let controller = landscapeViewController
+		{
+			controller.searchResults = searchResults
+			controller.view.frame = view.bounds
+			controller.view.alpha = 0
+			view.addSubview(controller.view)
+			addChildViewController(controller)
+			coordinator.animate(alongsideTransition:
+				{ _ in
+					controller.view.alpha = 1
+					self.searchBar.resignFirstResponder()
+					if self.presentedViewController != nil
+					{
+						self.dismiss(animated: true, completion: nil)
+					}
+				},
+				completion:
+				{ _ in
+				controller.didMove(toParentViewController: self)
+				}
+			)
+		}
+	}
 
 }
 
