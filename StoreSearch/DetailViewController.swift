@@ -30,6 +30,7 @@ class DetailViewController: UIViewController
 	{
 		super.viewDidLoad()
 
+		view.backgroundColor = UIColor.clear
 		popupView.layer.cornerRadius = 10
 		view.tintColor = UIColor(red: 20/255, green: 160/255, blue: 160/255, alpha: 1)
 		
@@ -110,16 +111,15 @@ class DetailViewController: UIViewController
 		print("deinit \(self)")
 		downloadTask?.cancel()
 	}
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+	
+	// Remove below to get rid of animation/bouncing effect.
+	func animationController(
+		forPresented presented: UIViewController,
+		presenting: UIViewController,
+		source: UIViewController) -> UIViewControllerAnimatedTransitioning?
+	{
+		return BounceAnimationController()
+	}
 
 }
 
