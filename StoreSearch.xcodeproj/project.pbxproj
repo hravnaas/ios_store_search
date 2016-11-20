@@ -23,6 +23,7 @@
 		EF8942511DDFD467005985AA /* BounceAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8942501DDFD467005985AA /* BounceAnimationController.swift */; };
 		EF8942551DDFDAE8005985AA /* LandscapeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8942541DDFDAE8005985AA /* LandscapeViewController.swift */; };
 		EF8942571DE0E6EF005985AA /* FadeOutAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8942561DE0E6EF005985AA /* FadeOutAnimationController.swift */; };
+		EF8942591DE11D6F005985AA /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8942581DE11D6F005985AA /* Search.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		EF8942501DDFD467005985AA /* BounceAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BounceAnimationController.swift; sourceTree = "<group>"; };
 		EF8942541DDFDAE8005985AA /* LandscapeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandscapeViewController.swift; sourceTree = "<group>"; };
 		EF8942561DE0E6EF005985AA /* FadeOutAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FadeOutAnimationController.swift; sourceTree = "<group>"; };
+		EF8942581DE11D6F005985AA /* Search.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 				EF3ADA0E1DDE8E4400868CAE /* LoadingCell.xib */,
 				EF3AD9F81DDD18DB00868CAE /* Main.storyboard */,
 				EF3ADA0C1DDE49A600868CAE /* NothingFoundCell.xib */,
+				EF8942581DE11D6F005985AA /* Search.swift */,
 				EF3ADA061DDD3EA300868CAE /* SearchResult.swift */,
 				EF3ADA0A1DDE437A00868CAE /* SearchResultCell.swift */,
 				EF3ADA081DDE3D0B00868CAE /* SearchResultCell.xib */,
@@ -181,6 +184,7 @@
 				EF8942511DDFD467005985AA /* BounceAnimationController.swift in Sources */,
 				EF89424B1DDF80AC005985AA /* DetailViewController.swift in Sources */,
 				EF3AD9F51DDD18DB00868CAE /* AppDelegate.swift in Sources */,
+				EF8942591DE11D6F005985AA /* Search.swift in Sources */,
 				EF89424F1DDFD1F9005985AA /* GradientView.swift in Sources */,
 				EF3ADA111DDF734400868CAE /* UIImageView+DownloadImage.swift in Sources */,
 			);
