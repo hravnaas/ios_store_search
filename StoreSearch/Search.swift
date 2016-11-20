@@ -1,4 +1,6 @@
 import Foundation
+import UIKit // Used to status bar spinner
+
 typealias SearchComplete = (Bool) -> Void
 
 class Search
@@ -38,6 +40,7 @@ class Search
 		if !text.isEmpty
 		{
 			dataTask?.cancel()
+			UIApplication.shared.isNetworkActivityIndicatorVisible = true
 			state = .loading
 			let url = iTunesURL(searchText: text, category: category)
 			let session = URLSession.shared
@@ -73,6 +76,7 @@ class Search
 					
 					DispatchQueue.main.async
 					{
+						UIApplication.shared.isNetworkActivityIndicatorVisible = false
 						completion(success)
 					}
 				}
