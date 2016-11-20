@@ -1,0 +1,36 @@
+
+/* Class = "UILabel"; text = "Type:"; ObjectID = "27m-cV-XaI"; */
+"27m-cV-XaI.text" = "Type:";
+
+/* Class = "UILabel"; text = "Artist Name"; ObjectID = "IJs-aM-cAK"; */
+"IJs-aM-cAK.text" = "Artist Navn";
+
+/* Class = "UILabel"; text = "Genre:"; ObjectID = "KNT-A0-78F"; */
+"KNT-A0-78F.text" = "Genre:";
+
+/* Class = "UILabel"; text = "Genre Value"; ObjectID = "RiR-fx-dLG"; */
+"RiR-fx-dLG.text" = "Genre Verdi";
+
+/* Class = "UISegmentedControl"; bDd-6R-nm2.segmentTitles[0] = "All"; ObjectID = "bDd-6R-nm2"; */
+"bDd-6R-nm2.segmentTitles[0]" = "Alle";
+
+/* Class = "UISegmentedControl"; bDd-6R-nm2.segmentTitles[1] = "Music"; ObjectID = "bDd-6R-nm2"; */
+"bDd-6R-nm2.segmentTitles[1]" = "Musikk";
+
+/* Class = "UISegmentedControl"; bDd-6R-nm2.segmentTitles[2] = "Software"; ObjectID = "bDd-6R-nm2"; */
+"bDd-6R-nm2.segmentTitles[2]" = "Programvare";
+
+/* Class = "UISegmentedControl"; bDd-6R-nm2.segmentTitles[3] = "E-books"; ObjectID = "bDd-6R-nm2"; */
+"bDd-6R-nm2.segmentTitles[3]" = "E-boeker";
+
+/* Class = "UILabel"; text = "Kind Value"; ObjectID = "bi2-p8-PCu"; */
+"bi2-p8-PCu.text" = "Kind Value";
+
+/* Class = "UISearchBar"; placeholder = "App name, artist, song, album, e-book"; ObjectID = "eNd-Wr-r3f"; */
+"eNd-Wr-r3f.placeholder" = "App navn, artist, sang, album, e-bok";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "xep-Uk-d9n"; */
+"xep-Uk-d9n.text" = "Navn";
+
+/* Class = "UIButton"; normalTitle = "$9.99"; ObjectID = "ybz-Cx-6bP"; */
+"ybz-Cx-6bP.normalTitle" = "NOK 49.99";

@@ -1,3 +1,5 @@
+import Foundation
+
 class SearchResult
 {
 	var name = ""
@@ -14,17 +16,21 @@ class SearchResult
 	{
 		switch kind
 		{
-		case "album": return "Album"
-		case "audiobook": return "Audio Book"
-		case "book": return "Book"
-		case "ebook": return "E-Book"
-		case "feature-movie": return "Movie"
-		case "music-video": return "Music Video"
-		case "podcast": return "Podcast"
-		case "software": return "App"
-		case "song": return "Song"
-		case "tv-episode": return "TV Episode"
-		default: return kind
+			// TODO: Localize remaining case statements.
+			// The actual translation happens in file Localizable.strings.
+			case "album": return "Album"
+			case "audiobook": return "Audio Book"
+			case "book": return "Book"
+			case "ebook": return "E-Book"
+			case "feature-movie": return "Movie"
+			case "music-video": return "Music Video"
+			case "podcast": return "Podcast"
+			case "software":
+				return NSLocalizedString("App", comment: "Localized kind: Software")
+			case "song":
+				return NSLocalizedString("Song", comment: "Localized kind: Song")
+			case "tv-episode": return "TV Episode"
+			default: return kind
 		}
 	}
 }
